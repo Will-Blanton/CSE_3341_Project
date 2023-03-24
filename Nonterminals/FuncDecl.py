@@ -4,7 +4,7 @@ from Nonterminals.Formals import Formals
 from Nonterminals.Nonterminal import Nonterminal
 from Nonterminals.StmtSeq import StmtSeq
 from Parser import Parser
-from Util import indentPrint, duplicateFunctionPrint
+from Util import indentPrint, duplicateFunctionPrint, duplicateFormalPrint
 
 
 class FuncDecl(Nonterminal):
@@ -53,7 +53,8 @@ class FuncDecl(Nonterminal):
 
     # check that functions have unique names
     def semanticCheck(self, globalS, localS, declType=""):
-        formalCount = self.children[1].semanticCheck(self, globalS, localS)
+        formals = self.children[1].semanticCheck(self, globalS, localS)
+        formalCount = len(formals)
 
         result = self.children[0] not in Parser.funcDeclared.keys()
         if result:
@@ -61,6 +62,11 @@ class FuncDecl(Nonterminal):
             Parser.funcDeclared[self.children[0]] = formalCount
         else:
             duplicateFunctionPrint(self.children[0])
+
+        # check for duplicate formals
+        if formalCount != len(set(formals)):
+            duplicateFormalPrint(self.children[0])
+            result = False
 
         return result
 

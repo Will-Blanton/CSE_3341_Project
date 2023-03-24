@@ -40,8 +40,9 @@ class FuncCall(Nonterminal):
     def semanticCheck(self, globalS, localS, declType=""):
         result = True
         formals = self.children[1].semanticCheck(globalS, localS)
-        if (self.children[0], formals) not in Parser.funcDeclared.items():
-            noTargetPrint(self.children[0], formals)
+        formalCount = len(formals)
+        if (self.children[0], formalCount) not in Parser.funcDeclared.items():
+            noTargetPrint(self.children[0], formalCount)
             result = False
 
         return result

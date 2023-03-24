@@ -34,8 +34,7 @@ class Stmt(Nonterminal):
             parser.parse(FuncCall(self))
         else:
             # end parser and print error message
-            expected = [Fun.ID, Fun.IF, Fun.WHILE, Fun.WRITE, Fun.INT, Fun.REF]
-            parser.endParse(expected)
+            parser.endParse("statement body")
 
     # print contents of parse tree
     def prettyPrint(self, indents=0):

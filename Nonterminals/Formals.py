@@ -30,7 +30,7 @@ class Formals(Nonterminal):
     # check that variables are in scope and such
     def semanticCheck(self, globalS, localS, declType=""):
         # count formals
-        formals = 1
+        formals = [self.children[0]]
 
         if len(self.children) == 2:
             formals += self.children[1].semanticCheck(self, globalS, localS)

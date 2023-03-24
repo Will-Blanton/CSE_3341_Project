@@ -20,7 +20,7 @@ def main():
 
     P.semanticCheck()
 
-    root.prettyPrint()
+    # root.prettyPrint()
 
     # Initialize executor with parse tree root and data file scanner
     Executor.initialize(root, D)
