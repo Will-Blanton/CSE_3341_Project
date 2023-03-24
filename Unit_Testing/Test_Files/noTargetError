@@ -1,0 +1,19 @@
+program {
+    add(reference a, b, c) {
+        a = b + c;
+        b = 0;
+        c = 0;
+    }
+
+    begin {
+        reference x, y, z;
+        x = new inst;
+        y = new inst;
+        z = new inst;
+        x = 1;
+        y = 2;
+        z = 3;
+        begin bruh(x, y, z);
+        write(x);
+    }
+}

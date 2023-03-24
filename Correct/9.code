@@ -1,0 +1,17 @@
+program {
+	int x;
+	A(reference r) { 
+		if r<9 then {
+			x=read();
+			r=x;
+			begin A(r); 
+		}
+	}
+begin {
+	x=read();
+	reference y;
+	y=new inst;
+	y=x;
+	begin A(y);
+	write(y);
+}}

@@ -1,0 +1,11 @@
+program {
+	int x;
+begin {
+    int y;
+    x = 1;
+    while x < 128 {
+       x = x * 2;
+	   y = y + 1;
+	}
+	write(y);
+}}

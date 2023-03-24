@@ -1,0 +1,5 @@
+program {
+begin {
+    int x;
+    x = read();
+}}

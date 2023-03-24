@@ -1,0 +1,22 @@
+program {
+    add(reference a, b, c) {
+        a = b + c;
+        if 0 < b then {
+            b = b - 1;
+            c = c * 2;
+            begin add(a, b, c);
+        }
+    }
+
+    begin {
+        reference x, y, z;
+        x = new inst;
+        y = new inst;
+        z = new inst;
+        x = 1;
+        y = 5;
+        z = 1;
+        begin add(x, y, z);
+        write(x);
+    }
+}

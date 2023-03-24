@@ -1,0 +1,7 @@
+program {
+	A(reference x, x) { r=0; }
+	int x;
+begin {
+	x=1;
+	write(4);
+}}

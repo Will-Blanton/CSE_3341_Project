@@ -1,0 +1,12 @@
+program {
+	int x;
+begin {
+    x = 21;
+    if x == 42 then {
+	    x=84;
+	} else {
+	    int x;
+	    x=42;
+	}
+	write(x);
+}}

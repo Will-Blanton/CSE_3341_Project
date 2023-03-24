@@ -1,0 +1,23 @@
+program {
+	A(reference r, s) { 
+		r=0; 
+		s=0; 
+	}
+	B(reference r, s) { 
+		r=10; 
+		s=10; 
+	}
+	reference x;
+	reference y;
+begin {
+	x=new inst;
+	y=new inst;
+	x=1;
+	y=1;
+	begin A(x, y);
+	write(x);
+	write(y);
+	begin B(x, y);
+	write(x);
+	write(y);
+}}

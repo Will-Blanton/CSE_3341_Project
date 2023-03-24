@@ -1,0 +1,7 @@
+program {
+begin {
+    int x, y;
+    x = read();
+    y = read();
+	write(y - x);
+}}

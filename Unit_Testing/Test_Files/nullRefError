@@ -1,0 +1,5 @@
+program {
+	reference x;
+begin {
+    x = 54;
+}}

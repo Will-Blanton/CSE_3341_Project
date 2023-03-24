@@ -1,0 +1,10 @@
+program {
+	A(reference r) { 
+		r=0; 
+	}
+	reference x;
+begin {
+	x = new inst;
+	x=1;
+	write(4);
+}}

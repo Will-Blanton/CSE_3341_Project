@@ -1,0 +1,12 @@
+program {
+	A(reference r) { 
+		if r<9 then { 
+			r=read(); 
+			begin A(r); 
+		} 
+	}
+	reference x;
+begin {
+	x = new inst;
+	x = 10;
+}}

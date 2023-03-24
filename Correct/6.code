@@ -1,0 +1,23 @@
+program {
+	reference x;
+	reference y;
+	A(reference r, s) { 
+		x=0; 
+		y=0; 
+	}
+begin {
+	x=new inst;
+	y=new inst;
+	x=1;
+	y=1;
+	if x==y then {
+		reference a, b;
+		a=new inst;
+		a=5;
+		b=new inst;
+		b=5;
+		begin A(a, b);
+	}
+	write(x);
+	write(y);
+}}
