@@ -38,10 +38,12 @@ class Decl(Nonterminal):
         varType = ids[1]
         ids = ids[0]
 
+        executor = Executor.get_instance()
+
         # add ids to scope
         for id in ids:
             # if in decl-seq, add to global
             if declare:
-                Executor.scope.declareGlobal(id, varType)
+                executor.scope.declareGlobal(id, varType)
             else:
-                Executor.scope.declareLocal(id, varType)
+                executor.scope.declareLocal(id, varType)

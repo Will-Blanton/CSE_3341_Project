@@ -1,7 +1,6 @@
 import sys
 
 
-# it may have been a better idea to make SymbolTable a static class since there's only one instance
 class SymbolTable:
     def __init__(self):
         # dictionary of strings (variables) to ints

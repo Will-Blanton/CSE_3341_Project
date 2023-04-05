@@ -45,7 +45,7 @@ class Formals(Nonterminal):
         else:
             # copy formal values for function call
             fId = self.children[0]
-            formals = [(fId, Executor.scope.getRefValue(fId))]
+            formals = [(fId, Executor.get_instance().scope.getRefValue(fId))]
 
         if len(self.children) == 2:
             formals += self.children[1].execute(declare)

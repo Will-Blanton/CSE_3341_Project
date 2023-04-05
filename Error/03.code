@@ -1,9 +1,0 @@
-program {
-	A(reference r) { r=0; }
-	A(reference x, y) { x=0; }
-	reference x;
-begin {
-	x=new inst;
-	x=1;
-	begin A(x);
-}}

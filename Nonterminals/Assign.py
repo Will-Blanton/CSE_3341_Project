@@ -91,15 +91,16 @@ class Assign(Nonterminal):
 
     # evaluate assign
     def execute(self, declare=False):
+        executor = Executor.get_instance()
 
         # determine RHS
         if self.children[1] == Fun.NEW:
             # allocate on heap
-            Executor.scope.initRef(self.children[0])
+            executor.scope.initRef(self.children[0])
         elif self.children[1] == Fun.SHARE:
             # copy ref value
-            Executor.scope.copyRef(self.children[0], self.children[2])
+            executor.scope.copyRef(self.children[0], self.children[2])
         else:
             # evaluate expr and store in id
             exprVal = self.children[1].execute()
-            Executor.scope.assignInt(self.children[0], exprVal)
+            executor.scope.assignInt(self.children[0], exprVal)

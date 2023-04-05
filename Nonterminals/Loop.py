@@ -53,11 +53,13 @@ class Loop(Nonterminal):
 
     # execute while loop
     def execute(self, declare=False):
+        executor = Executor.get_instance()
+
         # enter new scope for stmt-seq
-        Executor.scope.enterScope()
+        executor.scope.enterScope()
 
         while self.children[0].execute():
             # execute stmt loop
             self.children[1].execute()
 
-        Executor.scope.exitScope()
+        executor.scope.exitScope()

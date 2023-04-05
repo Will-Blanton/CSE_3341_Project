@@ -79,17 +79,18 @@ class Factor(Nonterminal):
 
     # evaluate factor
     def execute(self, declare=False):
-        factor = 0
+        executor = Executor.get_instance()
+
         # determine RHS
         if self.children[0] == Fun.READ:
             # read
-            factor = Executor.read()
+            factor = executor.read()
         elif self.children[0] == Fun.LPAREN:
             # evaluate expr
             factor = self.children[1].execute()
         elif type(self.children[0]) == str:
             # get stored value
-            factor = Executor.scope.getValue(self.children[0])
+            factor = executor.scope.getValue(self.children[0])
         else:
             factor = self.children[0]
 

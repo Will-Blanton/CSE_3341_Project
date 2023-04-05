@@ -82,10 +82,12 @@ class Prog(Nonterminal):
             self.children[0].execute()
             stmtIndex = 1
 
+        executor = Executor.get_instance()
+
         # enter new scope for stmt-seq
-        Executor.scope.enterScope()
+        executor.scope.enterScope()
 
         # check stmt-seq
         self.children[stmtIndex].execute()
 
-        Executor.scope.exitScope()
+        executor.scope.exitScope()

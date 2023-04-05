@@ -1,23 +1,15 @@
 program {
-	reference x;
-	reference y;
-	A(reference r, s) { 
-		x=0; 
-		y=0; 
+	add(reference a, b) {
+		a = a+b;
+		reference n;
 	}
 begin {
-	x=new inst;
-	y=new inst;
-	x=1;
-	y=1;
-	if x==y then {
-		reference a, b;
-		a=new inst;
-		a=5;
-		b=new inst;
-		b=5;
-		begin A(a, b);
-	}
+	reference x;
+	x = new inst;
+	x = 1;
+	reference y;
+	y = new inst;
+	y = 1+x;
+	begin add(x, y);
 	write(x);
-	write(y);
 }}

@@ -76,4 +76,4 @@ class FuncDecl(Nonterminal):
         formals = self.children[1].execute(True)
 
         # save function info
-        Executor.functions[funcName] = formals, self.children[2]
+        Executor.get_instance().functions[funcName] = formals, self.children[2]

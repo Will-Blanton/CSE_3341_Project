@@ -50,18 +50,20 @@ class FuncCall(Nonterminal):
     # execute function call
     def execute(self, declare=False):
 
+        executor = Executor.get_instance()
+
         # returns pairs of formal id and their heap index in the current scope
         actuals = self.children[1].execute()
 
-        Executor.scope.enterFrame()
+        executor.scope.enterFrame()
 
-        function = Executor.functions[self.children[0]]
+        function = executor.functions[self.children[0]]
         formals = function[0]
 
         # copy values in
         for i in range(0, len(actuals)):
-            Executor.scope.declareLocal(formals[i], "ref")
-            Executor.scope.copyRef(formals[i], actuals[i][1], rIndex=True)
+            executor.scope.declareLocal(formals[i], "ref")
+            executor.scope.copyRef(formals[i], actuals[i][1], rIndex=True)
 
         # execute stmt-seq
         function[1].execute()
@@ -69,10 +71,10 @@ class FuncCall(Nonterminal):
         # save final values of formal params
         finalVals = []
         for f in formals:
-            finalVals.append(Executor.scope.getRefValue(f))
+            finalVals.append(executor.scope.getRefValue(f))
 
-        Executor.scope.exitFrame()
+        executor.scope.exitFrame()
 
         # copy values out
         for i in range(0, len(actuals)):
-            Executor.scope.copyRef(actuals[i][0], finalVals[i], rIndex=True)
+            executor.scope.copyRef(actuals[i][0], finalVals[i], rIndex=True)

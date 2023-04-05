@@ -1,12 +1,7 @@
 program {
-	A(reference r) { 
-		if r<9 then { 
-			r=read(); 
-			begin A(r); 
-		} 
-	}
-	reference x;
+	int x;
 begin {
-	x = new inst;
+	reference y;
 	x = 10;
+	write(x);
 }}

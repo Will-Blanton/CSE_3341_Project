@@ -22,11 +22,13 @@ def main():
 
     # root.prettyPrint()
 
+    executor = Executor.get_instance()
+
     # Initialize executor with parse tree root and data file scanner
-    Executor.initialize(root, D)
+    executor.initialize(root, D)
 
     # Execute code
-    Executor.execute()
+    executor.execute()
 
 
 if __name__ == "__main__":

@@ -1,25 +1,12 @@
 from Executor import Executor
-from Fun import Fun
-from Nonterminals.Assign import Assign
-from Nonterminals.Cmpr import Cmpr
 from Nonterminals.Cond import Cond
-from Nonterminals.DeclRef import DeclRef
-from Nonterminals.DeclSeq import DeclSeq
-from Nonterminals.Decl import Decl
-from Nonterminals.DeclInt import DeclInt
 from Nonterminals.Expr import Expr
-from Nonterminals.Factor import Factor
-from Nonterminals.IdList import IdList
 from Nonterminals.Out import Out
 from Nonterminals.Prog import Prog
-from Nonterminals.Stmt import Stmt
-from Nonterminals.Term import Term
 from Parser import Parser
 from Scanner import Scanner
 import unittest
 from unittest.mock import patch
-
-from Symbol_Table import SymbolTable
 
 
 class ParserTest(unittest.TestCase):
@@ -56,8 +43,10 @@ class ParserTest(unittest.TestCase):
         self.P.set_rootNontermial(Out())
         root = self.P.parse()
 
-        Executor.initialize(root, None)
-        Executor.execute()
+        executor = Executor.get_instance()
+
+        executor.initialize(root, None)
+        executor.execute()
 
         # check that write has been called
         mock_print.assert_called_with(3)
@@ -69,8 +58,10 @@ class ParserTest(unittest.TestCase):
         self.P.set_rootNontermial(Prog())
         root = self.P.parse()
 
-        Executor.initialize(root, None)
-        Executor.execute()
+        executor = Executor.get_instance()
+
+        executor.initialize(root, None)
+        executor.execute()
 
         # check that write has been called
         mock_print.assert_called_with(42)
@@ -82,8 +73,10 @@ class ParserTest(unittest.TestCase):
         self.P.set_rootNontermial(Prog())
         root = self.P.parse()
 
-        Executor.initialize(root, None)
-        Executor.execute()
+        executor = Executor.get_instance()
+
+        executor.initialize(root, None)
+        executor.execute()
 
         # check that write has been called
         mock_print.assert_called_with(0)
@@ -95,8 +88,10 @@ class ParserTest(unittest.TestCase):
         self.P.set_rootNontermial(Prog())
         root = self.P.parse()
 
-        Executor.initialize(root, None)
-        Executor.execute()
+        executor = Executor.get_instance()
+
+        executor.initialize(root, None)
+        executor.execute()
 
         # check that write has been called
         mock_print.assert_called_with(21)
@@ -108,14 +103,16 @@ class ParserTest(unittest.TestCase):
         self.P.set_rootNontermial(Prog())
         root = self.P.parse()
 
-        Executor.initialize(root, None)
-        Executor.execute()
+        executor = Executor.get_instance()
+
+        executor.initialize(root, None)
+        executor.execute()
 
         # check that write has been called
         mock_print.assert_called_with(7)
 
     @patch('builtins.print')
-    def test_write_execute(self, mock_print):
+    def test_read_execute(self, mock_print):
         self.P.set_scanner(Scanner("Test_Files\\readExecute"))
 
         self.P.set_rootNontermial(Prog())
@@ -124,8 +121,10 @@ class ParserTest(unittest.TestCase):
         # init scanner for data
         data = Scanner("Test_Files\\readExecuteData")
 
-        Executor.initialize(root, data)
-        Executor.execute()
+        executor = Executor.get_instance()
+
+        executor.initialize(root, data)
+        executor.execute()
 
         # check that write has been called
         mock_print.assert_called_with(42)
@@ -139,10 +138,12 @@ class ParserTest(unittest.TestCase):
         # init scanner for data
         data = Scanner("Test_Files\\readErrorData")
 
-        Executor.initialize(root, data)
+        executor = Executor.get_instance()
+
+        executor.initialize(root, data)
 
         with self.assertRaises(SystemExit):
-            Executor.execute()
+            executor.execute()
 
     def test_null_ref_error(self):
         self.P.set_scanner(Scanner("Test_Files\\nullRefError"))
@@ -150,10 +151,12 @@ class ParserTest(unittest.TestCase):
         self.P.set_rootNontermial(Prog())
         root = self.P.parse()
 
-        Executor.initialize(root, None)
+        executor = Executor.get_instance()
+
+        executor.initialize(root, None)
 
         with self.assertRaises(SystemExit):
-            Executor.execute()
+            executor.execute()
 
     # TESTS FOR PROJECT 4
     @patch('builtins.print')
@@ -163,8 +166,10 @@ class ParserTest(unittest.TestCase):
         self.P.set_rootNontermial(Prog())
         root = self.P.parse()
 
-        Executor.initialize(root, None)
-        Executor.execute()
+        executor = Executor.get_instance()
+
+        executor.initialize(root, None)
+        executor.execute()
 
         # check that write has been called
         mock_print.assert_called_with(5)
@@ -176,8 +181,10 @@ class ParserTest(unittest.TestCase):
         self.P.set_rootNontermial(Prog())
         root = self.P.parse()
 
-        Executor.initialize(root, None)
-        Executor.execute()
+        executor = Executor.get_instance()
+
+        executor.initialize(root, None)
+        executor.execute()
 
         # check that write has been called
         mock_print.assert_called_with(32)

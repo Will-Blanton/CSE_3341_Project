@@ -1,11 +1,8 @@
 program {
-	A(reference r) { 
-		r=0; 
-	}
-	reference x;
+	int x;
 begin {
-	x=new inst;
-	x=1;
-	begin A(x);
-	write(x);
+	reference y;
+	y = new inst;
+	y = 10;
+	write(y);
 }}

@@ -78,8 +78,10 @@ class If(Nonterminal):
 
     # execute if statement
     def execute(self, declare=False):
+        executor = Executor.get_instance()
+
         # enter new scope for stmt-seq
-        Executor.scope.enterScope()
+        executor.scope.enterScope()
 
         # evaluate cond
         if self.children[0].execute():
@@ -87,4 +89,4 @@ class If(Nonterminal):
         elif len(self.children) == 3:
             self.children[2].execute()
 
-        Executor.scope.exitScope()
+        executor.scope.exitScope()

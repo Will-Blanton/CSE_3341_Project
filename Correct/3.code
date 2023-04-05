@@ -1,14 +1,10 @@
 program {
-	x(reference a, b) { 
-		a = b; 
-	}
+	int x;
 begin {
-	reference x, y;
-	x=new inst;
-	y=new inst;
-	x = 1;
-	y = 2;
-	begin x(x, y);
-	write(x);
-	write(y);
+	reference y;
+	reference z;
+	y = new inst;
+	y = 10;
+	z = share y;
+	write(z);
 }}
