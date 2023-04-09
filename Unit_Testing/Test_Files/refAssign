@@ -3,7 +3,7 @@ program {
 begin {
     reference y;
     x = new inst;
-    x = 54;
+    x = 5;
     y = share x;
 	x=54-y;
 	write(x);

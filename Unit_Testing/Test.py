@@ -74,8 +74,10 @@ class Test(unittest.TestCase):
         executor = Executor.get_instance()
         executor.execute()
 
-        # check that write has been called
-        mock_print.assert_called_with(0)
+        # check that 49 is printed in the output
+        mock_print.assert_called()
+        output_string = ''.join([str(call[0][0]) for call in mock_print.call_args_list])
+        self.assertIn("49", output_string)
 
     @patch('builtins.print')
     def test_if_nesting(self, mock_print):
@@ -198,9 +200,9 @@ class Test(unittest.TestCase):
         executor = Executor.get_instance()
         executor.execute()
 
-        expected = [call("gc:1"), call("gc:0")]
+        expected = [call("gc:1"), call("gc:2"), call("gc:1"), call("gc:0")]
 
-        # check that garbage collector is counting reachable
+        # check that garbage collector is decreasing reachable when reference value is switched
         mock_print.assert_has_calls(expected)
 
 
