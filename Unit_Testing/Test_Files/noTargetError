@@ -13,7 +13,7 @@ program {
         x = 1;
         y = 2;
         z = 3;
-        begin bruh(x, y, z);
+        begin fake(x, y, z);
         write(x);
     }
 }

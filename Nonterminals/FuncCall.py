@@ -77,4 +77,4 @@ class FuncCall(Nonterminal):
 
         # copy values out
         for i in range(0, len(actuals)):
-            executor.scope.copyRef(actuals[i][0], finalVals[i], rIndex=True)
+            executor.scope.copyRef(actuals[i][0], finalVals[i], rIndex=True, out=True)

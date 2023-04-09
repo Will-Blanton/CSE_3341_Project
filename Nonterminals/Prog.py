@@ -90,4 +90,4 @@ class Prog(Nonterminal):
         # check stmt-seq
         self.children[stmtIndex].execute()
 
-        executor.scope.exitScope()
+        executor.scope.exitProg()

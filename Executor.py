@@ -18,12 +18,13 @@ class Executor:
         self.readScanner = None
         self.scope = None
         # dictionary containing {function name: (formal param ids, stmt-seq)}
-        self.functions = {}
+        self.functions = None
 
     def initialize(self, rootNode, readScanner):
         self.rootNode = rootNode
         self.readScanner = readScanner
         self.scope = SymbolTable()
+        self.functions = {}
 
     def execute(self):
         self.rootNode.execute()
