@@ -1,5 +1,7 @@
 import sys
 
+from Garbage_Collector import GarbageCollector
+
 
 class SymbolTable:
     def __init__(self):
@@ -10,17 +12,21 @@ class SymbolTable:
         self.frames = [[{}]]
         # array of ints
         self.heap = []
+        # garbage collector
+        self._garbage = GarbageCollector()
 
     def enterScope(self):
         self.frames[-1].append({})
 
     def exitScope(self):
+        self._garbage.decreaseRefs(self.frames[-1][-1])
         self.frames[-1].pop()
 
     def enterFrame(self):
         self.frames.append([{}])
 
     def exitFrame(self):
+        self._garbage.decreaseRefs(self.frames[-1])
         self.frames.pop()
 
     # declare int by default
@@ -81,20 +87,22 @@ class SymbolTable:
     # create a new pos in the heap
     def initRef(self, var):
         self.__getScope(var)[var][0] = len(self.heap)
+        self._garbage.increaseRefs(len(self.heap))
         self.heap.append(None)
 
     '''
      copy heap index from rVar to lVar
      if rIndex = True, rVal is a heapIndex instead of a var
     '''
-    def copyRef(self, lVar, rVal, rIndex=False):
+    def copyRef(self, lVar, rVal, rIndex=False, out=False):
         lScope = self.__getScope(lVar)
         if rIndex:
             index = rVal
+            if not out:
+                self._garbage.increaseRefs(index)
         else:
             rScope = self.__getScope(rVal)
             index = rScope[rVal][0]
+            self._garbage.increaseRefs(index)
 
         lScope[lVar][0] = index
-
-

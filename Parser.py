@@ -14,6 +14,8 @@ class Parser:
 
     # change root nonterminal
     def set_rootNontermial(self, nonterminal):
+        self.parsed = False
+        Parser.funcDeclared = {}
         self.__rootNonterminal = nonterminal
 
     def get_rootNontermial(self):

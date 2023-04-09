@@ -1,0 +1,10 @@
+program {
+	reference x, z;
+begin {
+    reference y;
+    x = new inst;
+    z = new inst;
+    x = 54;
+    y = share x;
+	x=54-y;
+}}

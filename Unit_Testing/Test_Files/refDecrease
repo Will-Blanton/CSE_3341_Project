@@ -1,0 +1,18 @@
+program {
+	add(reference a, b){
+	    a = a + b;
+	    reference n;
+	    n = new inst;
+	    n = 10;
+	}
+    begin {
+        reference x;
+        x = new inst;
+        x = 5;
+        reference y;
+        y = new inst;
+        y = 7;
+        begin add(x, y);
+        write(x);
+    }
+}
